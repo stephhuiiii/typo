@@ -18,13 +18,14 @@ Given the following users exist:
 | 1 | Steph | 1 | aaaaa | shui@gmail.com |
 | 2 | Ben | 2 | bbbbb | bhsieh@gmail.com |
 
-Scenario: merge 2 articles together and only 1 of the authors are in the merged article
+Scenario: merge 2 articles together and only 1 of the authors and 1 of the titles are in the merged article
 And I am on the edit page for article with id 1
 When the current user is an admin
 When I fill in "merge_with" with "2"    
 When I press "merge"
 Then I should be on the edit page for article with id 1
 Then the author field should contain "AuthorA"
+Then the title field should contain "Article A"
 ## Not sure how we plan to create a new title for merged articles
 
 Scenario: the text of the articles are in the merged article

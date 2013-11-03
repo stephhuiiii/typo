@@ -44,7 +44,15 @@ Then /^I should see the body of "(.*?)"$/ do |arg1|
    # express the regexp above with the code you wish you had
 end
 
+Then /^I should see the title of "(.*?)"$/ do |arg1|
+   # express the regexp above with the code you wish you had
+end
+
 Then /^the author field should contain "(.*?)"$/ do |arg1|
+  
+end
+
+Then /^the title field should contain "(.*?)"$/ do |arg1|
   
 end
 
