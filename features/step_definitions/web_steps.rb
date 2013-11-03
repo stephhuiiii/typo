@@ -55,6 +55,18 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
+And /^I am logged into the admin panel$/ do
+  visit '/accounts/login'
+  fill_in 'user_login', :with => 'admin'
+  fill_in 'user_password', :with => 'aaaaaaaa'
+  click_button 'Login'
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
@@ -136,6 +148,7 @@ end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
+  puts page.html
 
   if page.respond_to? :should
     page.should have_xpath('//*', :text => regexp)
@@ -154,6 +167,7 @@ end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
+  puts page.html
 
   if page.respond_to? :should
     page.should have_no_xpath('//*', :text => regexp)

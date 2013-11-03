@@ -6,17 +6,25 @@ I want to merge the articles in question
 
 Background: articles ready to be merged
 
-Given the following articles exist:
-| title |
-| Article A |
-| Article B |
+Given the blog is set up
 
-Scenario: non-admin cannot merge articles:
-When I am on the view page for "Article A"
-And the current user is not "admin"
-Then I should not see "Merge With This Article"
+Given the following articles exist:
+| id | title |
+| 1 | Article A |
+| 2 | Article B |
+
+Given the following users exist:
+| id |  login | profile_id | password | email |
+| 1 | Steph | 1 | aaaaa | shui@gmail.com |
+| 2 | Ben | 2 | bbbbb | bhsieh@gmail.com |
+
+
+Scenario: non-admin cannot merge articles:                 
+When the current user is not an admin
+And I am on the edit page for article with id 1
+Then I should not see "Merge Articles"
 
 Scenario: admin can merge articles
-When I am on the view page for "Article A"
-And the current user is "admin"
-Then I should see "Merge With This Article"
+When the current user is an admin
+When I am on the edit page for article with id 1
+Then I should see "Merge Articles"

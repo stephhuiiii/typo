@@ -416,6 +416,23 @@ class Article < Content
     user.admin? || user_id == user.id
   end
 
+   def merge_with(target_id)
+    target = Article.find_by_id(target_id)
+    target_comments = Comment.find_all_by_article_id(target_id)
+    if target
+      self.body = self.body + " " + target.body
+      target_comments.each do |comment|
+        comment.article_id = self.id
+        comment.save!
+      end
+      target.destroy
+      self.save
+      return true
+    else
+      return false
+    end
+  end
+
   protected
 
   def set_published_at

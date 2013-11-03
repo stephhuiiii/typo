@@ -3,4 +3,12 @@
 
   <%= render :partial => "form" %>
 
+
 <% end %>
+
+<h4>Merge Articles</h4>
+<%= form_tag("/admin/content/merge_articles/#{@article.id}") do %>
+  <%= text_field_tag 'merge_with' %>
+  <br/>
+  <button type="submit" id="merge">Merge</button>
+<% end %>  
