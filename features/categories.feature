@@ -8,12 +8,21 @@ Feature: Create or edit categories
     And I am logged into the admin panel
 
   Scenario: Successfully create new categories
-    Given I am on the new category page
-    When I fill in "article_title" with "Foobar"
-    And I fill in "article__body_and_extended_editor" with "Lorem Ipsum"
-    And I press "Publish"
-    Then I should be on the admin content page
-    When I go to the home page
-    Then I should see "Foobar"
-    When I follow "Foobar"
-    Then I should see "Lorem Ipsum"
+    When I am on the new category page
+    When I fill in "category_name" with "Homework"
+    And I fill in "category_keywords" with "hw"
+    And I fill in "category_permalink" with "homework"
+    And I fill in "category_description" with "homework I have"
+    And I press "Save"
+    Then I should see "Category was successfully saved."
+    Then I should be on the new category page
+    
+  Scenario: Successfully edit categories
+    Given I am on the edit category page
+    When I fill in "category_name" with "Homework"
+    And I fill in "category_keywords" with "hw"
+    And I fill in "category_permalink" with "homework"
+    And I fill in "category_description" with "homework I have"
+    And I press "Save"
+    Then I should see "Category was successfully saved."
+    Then I should be on the new category page

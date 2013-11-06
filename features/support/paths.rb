@@ -28,6 +28,12 @@ module NavigationHelpers
     when /^the edit page for article with id (\d*)$/
       "/admin/content/edit/#{$1}"
 
+    when /^the new category page$/
+      '/admin/categories/new'
+
+    when /^the edit category page$/
+      "/admin/categories/edit/#{$1}"
+
     else
       begin
         page_name =~ /^the (.*) page$/
